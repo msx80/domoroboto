@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{i18n "listOfThings"}}</title>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2f7df9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#2f7df9">
+
+<link rel="icon" type="image/png" sizes="192x192" href="./favicon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+
+  <link rel="stylesheet" href="./domoroboto.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<script>
+
+const setMsg = (m) => {
+	document.querySelector('#msg').innerText = m;
+}
+
+const openW = (id) => {
+	window.location='thing/'+id;
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<H5 style="text-align:center;">{{i18n "listOfThings"}}</h5>
+
+<table class="structural">
+{{#things}}
+<tr>
+<td style="text-align:center">
+<button id="sendbtn" type="button" onclick="openW('{{thing.id}}')" class="regButton">{{this.thing.label}}</button><br/>
+<span class="state_{{state}}"  id="msg" style="font-size:40%; vertical-align: top;">{{state}} - {{thing.kind}}</span>
+</td>
+<td style="vertical-align: top; width:1em">
+ <span style="font-size:110%">{{#if this.unknowActive }}❔{{else}}{{#if this.active }}🟢{{else}}⚪{{/if}}{{/if}}</span>
+</td>
+
+</tr>
+
+
+{{/things}}
+</table>  
+</body>
+</html>
+

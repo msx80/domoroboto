@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{label}}</title>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2f7df9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#2f7df9">
+
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+
+  <link rel="stylesheet" href="../domoroboto.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<script>
+
+
+const fieldChanged = () => {
+{{#if autosend }}
+	login();
+{{/if}}
+
+}
+const setMsg = (m) => {
+	document.querySelector('#msg').innerText = m;
+}
+
+const login = () => {
+	setMsg("Sending...");
+	const button = document.querySelector('#sendbtn');
+	button.disabled = true;
+	const form = document.querySelector('#myform');
+
+	const data = new FormData(form);
+	const value = Object.fromEntries(data.entries());  
+	let post = JSON.stringify(value)
+ 
+	const url = "../action/"+ window.location.pathname.split("/").pop();
+	let xhr = new XMLHttpRequest()
+ 
+	xhr.open('POST', url, true)
+	xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+	xhr.send(post);
+ 
+	xhr.onload = function () {
+        	setMsg(xhr.responseText); 
+        	button.disabled = false;
+    }
+	xhr.onerror = function () {
+        	setMsg("Could not make the request"); 
+        	button.disabled = false;
+    }
+
+}
+
+</script>
+
+</head>
+
+<body>
+<!--<div style="position:absolute; right:0px; width:2em"><button>Re</button></div>-->
+<H5 style="text-align:center;">{{label}}</h5>
+<span class="state_{{state}}" style="display:block; width:100%;font-size:30%; text-align:center;">{{state}} - {{kind}}</span>
+<!--<span class="state_{{state}}" style="display:block; width:100%;font-size:30%; text-align:center;">{{stateDescription}}</span>-->
+<form id="myform">

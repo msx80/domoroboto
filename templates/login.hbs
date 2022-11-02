@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2f7df9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#2f7df9">
+
+<link rel="icon" type="image/png" sizes="192x192" href="./favicon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+
+  <link rel="stylesheet" href="./domoroboto.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<script>
+
+
+const setMsg = (m) => {
+	document.querySelector('#msg').innerText = m;
+}
+
+const login = () => {
+	setMsg("Sending...");
+	const button = document.querySelector('#sendbtn');
+	button.disabled = true;
+	const form = document.querySelector('#myform');
+	form.submit();
+}
+
+</script>
+
+</head>
+
+<body>
+<!--<div style="position:absolute; right:0px; width:2em"><button>Re</button></div>-->
+<H5 style="text-align:center;">Login</h5>
+<span style="display:block; width:100%;font-size:30%; text-align:center;">Please enter credential</span>
+
+<form id="myform" action="dologin" method="post">
+
+  <h2>User</h2>
+<div class="genericBackground">
+
+  <input type="text" id="user" name="user" " />
+
+</div
+  <h2>Password</h2>
+<div class="genericBackground">
+
+  <input type="password" id="pass" name="pass" />
+</div
+
+
+
+<br/>
+<div style="text-align: center;">
+<span id="msg" style="font-size:40%;">Ready</span>
+
+
+<input id="sendbtn" type="button" onclick="login()" value="Login" class="wideButton" >	
+
+
+</div>
+</form>
+
+  
+</body>
+</html>
+

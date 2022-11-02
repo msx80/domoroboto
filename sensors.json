@@ -1,0 +1,45 @@
+{
+        "sensors": [
+                {
+                        "id": "AcCameraESPTemp",
+                        "label": "ESP Camera Temp",
+                        "topic": "tele/ACCameraMatr/SENSOR",
+                        "timestampPath":"$.Time",
+                        "valuePath":"$.ESP32.Temperature",
+                        "ylabel": "C°"
+                },
+                {
+                        "id": "AcCameraOutside",
+                        "label": "Outside Temp, Cam",
+                        "topic": "tele/ACCameraMatr/SENSOR",
+                        "timestampPath":"$.Time",
+                        "valuePath":"$.OutsideTemperature",
+                        "ylabel": "C°"
+                },
+                {
+                        "id": "AcCameraTemperature",
+                        "label": "Camera Temp",
+                        "topic": "tele/ACCameraMatr/SENSOR",
+                        "timestampPath":"$.Time",
+                        "valuePath":"$.InsideTemperature",
+                        "ylabel": "C°"
+                },
+                {
+                        "id": "Switch2_RSSI",
+                        "label": "Switch2 RSSI",
+                        "topic": "tele/Switch2/STATE",
+                        "timestampPath":"$.Time",
+                        "valuePath":"$.Wifi.RSSI",
+                        "ylabel": "Strength"
+                },
+                {
+                        "id": "prova",
+                        "label": "Prova Sensor",
+                        "topic": "provasensor",
+                        "timestampPath":"$.Time",
+                        "valuePath":"$.Value",
+                        "ylabel": "Count"
+                }
+        ]
+
+}

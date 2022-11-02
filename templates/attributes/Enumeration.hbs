@@ -1,0 +1,10 @@
+<div class="segmented">
+
+{{#enums}}
+  <input type="radio" name="{{id}}" value="{{this}}" id="{{id}}_{{this}}" {{#eq this value }}checked="true"{{/eq}} />
+  <label for="{{id}}_{{this}}">
+      <span>{{this}}</span>
+  </label>  
+{{/enums}}
+
+</div>

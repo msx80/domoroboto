@@ -1,0 +1,5 @@
+<div class="switch">
+  <input type="hidden" id="{{id}}" name="{{id}}" value="{{value}}" />
+  <input type="checkbox" id="{{id}}_cb" {{#if value }}checked="true"{{/if}} onclick="this.previousElementSibling.value = this.checked; fieldChanged();" />
+  <label for="{{id}}_cb"></label>
+</div>
