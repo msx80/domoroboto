@@ -84,7 +84,7 @@
                         "activeTopicPath": "$.active",
                         
                         "attributes": [
-                                { "id": "announcement", "label": "Announcement", "type":"string", defaultValue:"" },
+                                { "id": "announcement", "label": "Announcement", "type":"string", "defaultValue":"" },
                                 { "id": "tone", "label":"Tone", "type":"enumeration", "defaultValue":"HAPPY", "possibleValues" : ["ANGRY", "HAPPY", "MENACING", "SAD"] }, 
                                 { "id": "loudness", "label":"Loudness", "type":"integer", "defaultValue":50, "minValue":0, "maxValue":100  }
                         ],
