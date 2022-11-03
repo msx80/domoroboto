@@ -24,8 +24,7 @@ It turns this:
 			{ "id": "swingV", "label": "Swing Vert.", "type":"switch", "defaultValue": false },
 			{ "id": "swingH", "label": "Swing Horiz.", "type":"switch", "defaultValue": false }
 		],
-		"commandJson": true,
-		"commandTemplate2": "{ 'active':{{active}}, 'mode':'{{mode}}', 'fan':'{{fan}}', 'temperature':{{temperature}}, 'swingH':false, 'swingV':false }",
+		"commandTemplate": "{ 'active':{{active}}, 'mode':'{{mode}}', 'fan':'{{fan}}', 'temperature':{{temperature}}, 'swingH':false, 'swingV':false }",
 		"resultOk": "*\"DaikinCtrl\":\"Done\"*"
 	}
 	
