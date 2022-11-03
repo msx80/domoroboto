@@ -107,7 +107,7 @@ public class SensorSystem
 		
 	}
 	
-	public void graph(Sensor sensor, OutputStream os) throws IOException
+	private void graph(Sensor sensor, OutputStream os) throws IOException
 	{
 
 		JFreeChart chart = ChartFactory.createTimeSeriesChart(sensor.label, // Chart
@@ -125,7 +125,7 @@ public class SensorSystem
 
 	}
 	
-	public TimeSeriesCollection timeSerie(String name, Map<LocalDateTime, Number> values)
+	private TimeSeriesCollection timeSerie(String name, Map<LocalDateTime, Number> values)
 	{
 		TimeSeriesCollection dataset = new TimeSeriesCollection();  
 			  
@@ -150,7 +150,10 @@ public class SensorSystem
 
 	public Map<String, Object> createDocumentProducer(String base) {
 		
-	
+		// create the document producers (pages) for sensors.
+		// theres a "list" one listing all sensors and a "graph"
+		// producing the graph image.
+		
 		DocumentProducer list =  (req, res) -> 
 		{
 			

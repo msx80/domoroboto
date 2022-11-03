@@ -16,16 +16,19 @@ public class MqttUtils
 		
 
 		String broker = conf.get("mqtt.broker.conn"); //"tcp://192.168.1.2:1883";
-		String clientId = conf.get("mqtt.broker.clientId"); //"Domoroboto";
+		String clientId = conf.get("mqtt.broker.clientId", "Domoroboto"); 
 		MemoryPersistence persistence = new MemoryPersistence();
 
 		MqttClient client = new MqttClient(broker, clientId, persistence);
 
 		// MQTT connection option
 		MqttConnectOptions connOpts = new MqttConnectOptions();
-	            connOpts.setUserName(conf.get("mqtt.broker.user"));
-	            connOpts.setPassword(conf.get("mqtt.broker.pass").toCharArray());
-//	            // retain session
+		if(conf.containsKey("mqtt.broker.user"))
+		{
+			connOpts.setUserName(conf.get("mqtt.broker.user"));
+			connOpts.setPassword(conf.get("mqtt.broker.pass").toCharArray());
+		}
+	     // retain session
 		connOpts.setAutomaticReconnect(true);
 		connOpts.setCleanSession(true);
 

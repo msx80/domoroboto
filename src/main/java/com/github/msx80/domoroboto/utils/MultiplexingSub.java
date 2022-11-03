@@ -29,6 +29,11 @@ public class MultiplexingSub {
 		this.mqtt = mqtt;
 	}
 
+	public void unsubscribe(String topic, Listener listener)
+	{
+		throw new UnsupportedOperationException("Left as exercise to the reader");
+	}
+	
 	public void subscribe(String topic, Listener listener) throws MqttException
 	{
 

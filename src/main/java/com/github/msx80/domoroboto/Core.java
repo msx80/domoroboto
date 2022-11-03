@@ -47,6 +47,7 @@ public class Core implements Domo {
 	Map<String, ThingData> thingsById = new HashMap<>();
 	List<ThingData> things = new ArrayList<>();
 	
+	// store the "last sent" configuration for all things, so that the page can be prepared with the same values as the last time
 	final StoredConf storedConf;
 
 	private MultiplexingSub multi;
@@ -117,6 +118,9 @@ public class Core implements Domo {
 	{
 		log.info("Received reply: {}", s);
 		
+		// fullfill the future if anyone is waiting.
+		// we could receive unexpected reply, for example if the device is activated with a different system
+		// in that case we won't have the future, so just ignore.
 		var fx = thing.reply;
 		if(fx!=null)
 		{
@@ -144,8 +148,10 @@ public class Core implements Domo {
 	{
 		Map<String, ?> params = parseCommand(t, jsonParams);
 		
+		
+		// either generate the command automatically as json, or handle the template.
 		String payload;
-		if(t.thing.commandJson == Boolean.TRUE)
+		if(t.thing.commandJson == Boolean.TRUE) // could be null
 		{
 			payload = JsonUtils.toJson(params);
 		}
@@ -163,11 +169,13 @@ public class Core implements Domo {
 		
 		
 		
-		t.reply = new CompletableFuture<>();
+		t.reply = new CompletableFuture<>(); // prepare the future for the Reply callback
 		try {
 			String b;
 			try {
+				// send the command
 				multi.publish(t.thing.commandTopic, payload, 2, false);
+				// wait 5 seconds to get the reply 
 				b = t.reply.get(5, TimeUnit.SECONDS);
 			} catch (TimeoutException e) {
 				throw new RuntimeException("Timed out", e);
@@ -176,6 +184,7 @@ public class Core implements Domo {
 			} catch (Exception e) {
 				throw new RuntimeException("Generic Error", e);
 			}
+			// check if the reply was ok
 			if(!checkReply(t, b))
 			{
 				throw new RuntimeException("Command reply was not OK: "+b);
@@ -185,7 +194,8 @@ public class Core implements Domo {
 		{
 			t.reply = null;
 		}
-		
+
+		// if all is good, store this parameters as the "last sent" 
 		storedConf.store(t.thing.getId(), new HashMap<> (params));
 		
 	}

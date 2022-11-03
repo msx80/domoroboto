@@ -6,6 +6,10 @@ import java.util.Map;
 
 import com.github.msx80.jouram.core.Mutator;
 
+/**
+ * The database containing all sensors readings
+ *
+ */
 public interface ReadingDb {
 
 	@Mutator

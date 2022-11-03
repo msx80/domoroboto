@@ -11,10 +11,10 @@ import com.github.msx80.kitteh.DocumentProducer;
 import com.github.msx80.simpleconf.Configuration;
 
 
-public class DomorobotoDocumentProducer {
+public class ThingsDocumentProducer {
 
 	
-	private static Logger log = LoggerFactory.getLogger(DomorobotoDocumentProducer.class);
+	private static Logger log = LoggerFactory.getLogger(ThingsDocumentProducer.class);
 
 	public static Map<String, Object> createDocumentProducer(Core core, Configuration conf, String base) throws Exception {
 		

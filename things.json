@@ -7,12 +7,12 @@
                         "statusTopic": "tele/bedroomlight/LWT",
                         "commandTopic": "cmnd/bedroomlight/POWER",
                         "replyTopic": "stat/bedroomlight/RESULT",
-						"activeTopic": "stat/bedroomlight/RESULT",
-						"activeTopicPath": "$.POWER",
-						"autosend": true,
+                        "activeTopic": "stat/bedroomlight/RESULT",
+                        "activeTopicPath": "$.POWER",
+                        "autosend": true,
                         "attributes": [
                                 {
-                                        "id": "active", "label": "Active", "desc": "bla, bla", type="switch", defaultValue=true
+                                        "id": "active", "label": "Active", "desc": "bla, bla", "type":"switch", "defaultValue":true
                                 }
                         ],
                         "commandTemplate": "{{#if active }}ON{{else}}OFF{{/if}}",
@@ -25,10 +25,10 @@
                         "statusTopic": "tele/Protone/LWT",
                         "commandTopic": "cmnd/Protone/POWER",
                         "replyTopic": "stat/Protone/RESULT",
-						"autosend": true,
+                        "autosend": true,
                         "attributes": [
                                 {
-                                        "id": "open", "label": "Open", "desc": "bla, bla", type="pulse", defaultValue=null
+                                        "id": "open", "label": "Open", "desc": "bla, bla", "type":"pulse", "defaultValue":null
                                 }
                         ],
                         "commandTemplate": "ON",
@@ -41,19 +41,18 @@
                         "statusTopic": "tele/ACBedroom/LWT",
                         "commandTopic": "cmnd/ACBedroom/DaikinCtrl",
                         "replyTopic": "stat/ACBedroom/RESULT",
-						"activeTopic": "tele/ACBedroom/SENSOR",
-						"activeTopicPath": "$.active",
+                        "activeTopic": "tele/ACBedroom/SENSOR",
+                        "activeTopicPath": "$.active",
                         
                         "attributes": [
-                                { "id": "active", "label": "Active", "type":"switch", defaultValue=false },
-                                { "id": "mode", "label":"Mode", "type":"enumeration", defaultValue:"COOL", possibleValues = ["FAN", "COOL", "HEAT", "DRY", "AUTO"] },
-                                { "id": "fan", "label":"Fan", "type":"enumeration", defaultValue:"1", possibleValues = ["1", "2", "3", "4", "5", "NIGHT", "AUTO"] },
-                                { "id": "temperature", "label":"Temperature", "type":"temperature", defaultValue:21, minValue=18, maxValue=30  },
-                                { "id": "swingV", "label": "Swing Vert.", "type":"switch", defaultValue=false },
-                                { "id": "swingH", "label": "Swing Horiz.", "type":"switch", defaultValue=false }
+                                { "id": "active", "label": "Active", "type":"switch", "defaultValue":false },
+                                { "id": "mode", "label":"Mode", "type":"enumeration", "defaultValue":"COOL", "possibleValues" : ["FAN", "COOL", "HEAT", "DRY", "AUTO"] },
+                                { "id": "fan", "label":"Fan", "type":"enumeration", "defaultValue":"1", "possibleValues" : ["1", "2", "3", "4", "5", "NIGHT", "AUTO"] },
+                                { "id": "temperature", "label":"Temperature", "type":"temperature", "defaultValue":21, "minValue":18, "maxValue":30  },
+                                { "id": "swingV", "label": "Swing Vert.", "type":"switch", "defaultValue":false },
+                                { "id": "swingH", "label": "Swing Horiz.", "type":"switch", "defaultValue":false }
                         ],
                         "commandJson": true,
-                        "commandTemplate2": "{ 'active':{{active}}, 'mode':'{{mode}}', 'fan':'{{fan}}', 'temperature':{{temperature}}, 'swingH':false, 'swingV':false }",
                         "resultOk": "*\"DaikinCtrl\":\"Done\"*"
                 },
                 {
@@ -63,16 +62,15 @@
                         "statusTopic": "tele/Mood/LWT",
                         "commandTopic": "cmnd/Mood/DaikinCtrl",
                         "replyTopic": "stat/Mood/RESULT",
-						"activeTopic": "tele/Mood/SENSOR",
-						"activeTopicPath": "$.active",
+                        "activeTopic": "tele/Mood/SENSOR",
+                        "activeTopicPath": "$.active",
                         
                         "attributes": [
-                                { "id": "active", "label": "Active", "desc": "bla", "type":"switch", defaultValue=false },
+                                { "id": "active", "label": "Active", "desc": "bla", "type":"switch", "defaultValue":false },
                                 { "id": "color", "label":"Color", "type":"color", "defaultValue":"#FF0000" }, 
-                                { "id": "intensity", "label":"Intensity", "type":"integer", defaultValue:50, minValue=0, maxValue=100  }
+                                { "id": "intensity", "label":"Intensity", "type":"integer", "defaultValue":50, "minValue":0, "maxValue":100  }
                         ],
                         "commandJson": true,
-                        "commandTemplate2": "{ 'active':{{active}}, 'color':'{{color}}', 'intensity':'{{intensity}}' }",
                         "resultOk": "*\"RgbCtrl\":\"Done\"*"
                 },
                 {
@@ -82,16 +80,15 @@
                         "statusTopic": "tele/speaker1/LWT",
                         "commandTopic": "cmnd/speaker1/DaikinCtrl",
                         "replyTopic": "stat/speaker1/RESULT",
-						"activeTopic": "tele/speaker1/SENSOR",
-						"activeTopicPath": "$.active",
+                        "activeTopic": "tele/speaker1/SENSOR",
+                        "activeTopicPath": "$.active",
                         
                         "attributes": [
-                                { "id": "announcement", "label": "Announcement", "type":"string", defaultValue="" },
-                                { "id": "tone", "label":"Tone", "type":"enumeration", defaultValue:"HAPPY", possibleValues = ["ANGRY", "HAPPY", "MENACING", "SAD"] }, 
-                                { "id": "loudness", "label":"Loudness", "type":"integer", defaultValue:50, minValue=0, maxValue=100  }
+                                { "id": "announcement", "label": "Announcement", "type":"string", defaultValue:"" },
+                                { "id": "tone", "label":"Tone", "type":"enumeration", "defaultValue":"HAPPY", "possibleValues" : ["ANGRY", "HAPPY", "MENACING", "SAD"] }, 
+                                { "id": "loudness", "label":"Loudness", "type":"integer", "defaultValue":50, "minValue":0, "maxValue":100  }
                         ],
                         "commandJson": true,
-                        "commandTemplate2": "{ 'text':{{announcement}}, 'tone':'{{tone}}', 'loudness':'{{loudness}}' }",
                         "resultOk": "*\"RES\":\"Done\"*"
                 }
                 

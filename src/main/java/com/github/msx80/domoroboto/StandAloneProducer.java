@@ -41,7 +41,7 @@ public class StandAloneProducer implements DocumentProducer {
 		
 		// obtain the rules of the Controller and Sensors subsystems 
 		
-		Map<String, Object> rules1 = DomorobotoDocumentProducer.createDocumentProducer(c, conf,  base);
+		Map<String, Object> rules1 = ThingsDocumentProducer.createDocumentProducer(c, conf,  base);
 		Map<String, Object> rules2 = new SensorSystem(m).createDocumentProducer( base);
 		
 		

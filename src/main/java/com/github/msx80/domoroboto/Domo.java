@@ -7,6 +7,9 @@ import com.github.msx80.domoroboto.model.Attribute;
 import com.github.msx80.domoroboto.model.Type;
 import com.github.msx80.domoroboto.utils.StoredConf;
 
+/**
+ * some consultative methods of the main core to avoid passing around the whole object
+ */
 public interface Domo {
 	Map<String, Type> getAllTypes();
 
