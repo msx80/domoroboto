@@ -25,8 +25,3 @@ jobs:
       with:
         name: 'domoroboto.jar'
         path: target/domoroboto-*-jar-with-dependencies.jar
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        files: target/domoroboto-*-jar-with-dependencies.jar 
