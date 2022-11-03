@@ -84,3 +84,7 @@ http://localhost:8080/baseurl/sensors
 
 Single things can be linked with the thing id like this: http://localhost:8080/baseurl/things/thing-id
 
+Publishing on the internet should be done with a frontend SSH proxy.
+
+TIP: on android, you can add the page as a shortcut in home screen to have a "native app" look and feel.
+
