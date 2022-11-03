@@ -1,4 +1,4 @@
-# domoroboto
+# Domoroboto
 A web interface for MQTT-based domotic systems.
 
 You provide a json based configuration file describing your device(s) and it generates a "pretty" interface, served with an internal webserver, and lets you send mqtt commands to control the device and captures responses.
@@ -41,3 +41,10 @@ which can send messages like this:
 ```
 
 Also supports some rudimentary sensor reading and logging.
+
+# Configuration
+
+on [domoroboto.conf](blob/main/domoroboto.conf) you configure:
+- your mqtt coordinates and account
+- the tcp port for http requests
+- user accounts (currently the password is plaintext)
