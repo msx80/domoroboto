@@ -41,6 +41,12 @@ which can send messages like this:
 
 Also supports some rudimentary sensor reading and logging.
 
+# Building or downloading
+
+Build with maven: `mvn install assembly:single`, on `target` look for `domoroboto-*-jar-with-dependencies.jar`.
+
+Latest build can be downloaded by clicking on the latest Action run [here](https://github.com/msx80/domoroboto/actions).
+
 # Configuration
 
 on [domoroboto.conf](blob/main/domoroboto.conf) you configure:
@@ -68,7 +74,7 @@ If the thing has a single switch, an `"autosend": true` attribute can be used, i
 
 Sensors can be configured in `sensors.json`, which should be self explanatory.
 
-# running
+# Running
 
 Run the program with `java -jar domoroboto.jar` (requires java 17). You should be able to see the pages at:
 
