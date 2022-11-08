@@ -41,6 +41,8 @@ public class WebRenderer {
 					.add("id", attr.id)
 					.add("value", value)
 					.add("enums", attr.possibleValues)
+					.add("max", attr.rangeMax)
+					.add("min", attr.rangeMin)
 					.render();
 		} else {
 			// use a generic template for the class of this Type
@@ -50,6 +52,8 @@ public class WebRenderer {
 					.add("label", attr.label)
 					.add("id", attr.id)
 					.add("value", value)
+					.add("max", attr.rangeMax)
+					.add("min", attr.rangeMin)
 					.render();
 		}
 		

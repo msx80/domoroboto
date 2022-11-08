@@ -48,7 +48,7 @@
                                 { "id": "active", "label": "Active", "type":"switch", "defaultValue":false },
                                 { "id": "mode", "label":"Mode", "type":"enumeration", "defaultValue":"COOL", "possibleValues" : ["FAN", "COOL", "HEAT", "DRY", "AUTO"] },
                                 { "id": "fan", "label":"Fan", "type":"enumeration", "defaultValue":"1", "possibleValues" : ["1", "2", "3", "4", "5", "NIGHT", "AUTO"] },
-                                { "id": "temperature", "label":"Temperature", "type":"temperature", "defaultValue":21, "minValue":18, "maxValue":30  },
+                                { "id": "temperature", "label":"Temperature", "type":"temperature", "defaultValue":21, "rangeMin":18, "rangeMax":30  },
                                 { "id": "swingV", "label": "Swing Vert.", "type":"switch", "defaultValue":false },
                                 { "id": "swingH", "label": "Swing Horiz.", "type":"switch", "defaultValue":false }
                         ],
@@ -68,7 +68,7 @@
                         "attributes": [
                                 { "id": "active", "label": "Active", "desc": "bla", "type":"switch", "defaultValue":false },
                                 { "id": "color", "label":"Color", "type":"color", "defaultValue":"#FF0000" }, 
-                                { "id": "intensity", "label":"Intensity", "type":"integer", "defaultValue":50, "minValue":0, "maxValue":100  }
+                                { "id": "intensity", "label":"Intensity", "type":"integer", "defaultValue":50, "rangeMin":0, "rangeMax":100  }
                         ],
                         "commandJson": true,
                         "resultOk": "*\"RgbCtrl\":\"Done\"*"
@@ -86,7 +86,7 @@
                         "attributes": [
                                 { "id": "announcement", "label": "Announcement", "type":"string", "defaultValue":"" },
                                 { "id": "tone", "label":"Tone", "type":"enumeration", "defaultValue":"HAPPY", "possibleValues" : ["ANGRY", "HAPPY", "MENACING", "SAD"] }, 
-                                { "id": "loudness", "label":"Loudness", "type":"integer", "defaultValue":50, "minValue":0, "maxValue":100  }
+                                { "id": "loudness", "label":"Loudness", "type":"integer", "defaultValue":50, "rangeMin":0, "rangeMax":100  }
                         ],
                         "commandJson": true,
                         "resultOk": "*\"RES\":\"Done\"*"
