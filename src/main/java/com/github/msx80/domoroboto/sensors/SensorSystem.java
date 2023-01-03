@@ -97,9 +97,24 @@ public class SensorSystem
 	private void readSensor(Sensor sensor, String text) 
 	{
 		Number value = JsonPath.read(text, sensor.valuePath);
-		String timestamp = JsonPath.read(text, sensor.timestampPath);
-		var ta = DateTimeFormatter.ISO_LOCAL_DATE_TIME.parse(timestamp);
-		LocalDateTime localDateTime = LocalDateTime.from(ta);
+		if(value == null)
+		{
+			log.info("Message contains no value for {}", sensor.id);
+			return;
+		}
+		
+		LocalDateTime localDateTime;
+		if(sensor.timestampPath != null)
+		{
+			String timestamp = JsonPath.read(text, sensor.timestampPath);
+			var ta = DateTimeFormatter.ISO_LOCAL_DATE_TIME.parse(timestamp);
+			localDateTime = LocalDateTime.from(ta);
+		}
+		else
+		{
+			// if timestampPath is not provided use sysdate
+			localDateTime = LocalDateTime.now();
+		}
 		
 		log.info("New data point: {} {} {}", sensor.id, localDateTime, value);
 		
