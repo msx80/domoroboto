@@ -1,3 +1,5 @@
+![Build](https://github.com/msx80/domoroboto/workflows/Java%20CI%20with%20Maven/badge.svg)
+
 # Domoroboto
 A web interface for MQTT-based domotic systems.
 
