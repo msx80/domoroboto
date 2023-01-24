@@ -35,6 +35,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.PathNotFoundException;
 
 public class Core implements Domo {
 	
@@ -92,16 +93,22 @@ public class Core implements Domo {
 	private void mqttActive(ThingData thing, String sn)
 	{
 		
-		log.info("Received active: {}", sn);
+		log.info("Received active: {} {}",thing.thing.id,  sn);
 		if(thing.thing.activeTopicPath != null)
 		{
-			Object o = JsonPath.read(sn, thing.thing.activeTopicPath);
-			sn = o.toString();
+			try
+			{
+				Object o = JsonPath.read(sn, thing.thing.activeTopicPath);
+				sn = o.toString();
+			}catch (PathNotFoundException e) {
+				log.info("Active message without activeTopic {}", thing.thing.id);
+				return;
+			}
 		}
 		
 		
 		thing.active=isActive(sn);
-		log.info("Active: {}", thing.active);
+		log.info("Active: {} -> {}",thing.thing.id,  thing.active);
 	}		
 	private Boolean isActive(String sn) {
 		
@@ -116,7 +123,7 @@ public class Core implements Domo {
 	}	
 	private void mqttReply(ThingData thing, String s)
 	{
-		log.info("Received reply: {}", s);
+		log.info("Received reply: {} {}", thing.thing.id, s);
 		
 		// fullfill the future if anyone is waiting.
 		// we could receive unexpected reply, for example if the device is activated with a different system

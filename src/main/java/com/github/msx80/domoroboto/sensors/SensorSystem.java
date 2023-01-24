@@ -37,6 +37,8 @@ import com.github.msx80.jouram.kryo.KryoSeder;
 import com.github.msx80.kitteh.DocumentProducer;
 import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.PathNotFoundException;
+import com.jayway.jsonpath.PathNotFoundException;
 
 public class SensorSystem 
 {
@@ -96,10 +98,16 @@ public class SensorSystem
 
 	private void readSensor(Sensor sensor, String text) 
 	{
-		Number value = JsonPath.read(text, sensor.valuePath);
+		Number value;
+		try {
+			value = JsonPath.read(text, sensor.valuePath);
+		} catch (PathNotFoundException e) {
+			log.info("Message contains no value for {}", sensor.id);
+			value = null;
+		}
+
 		if(value == null)
 		{
-			log.info("Message contains no value for {}", sensor.id);
 			return;
 		}
 		
@@ -116,7 +124,7 @@ public class SensorSystem
 			localDateTime = LocalDateTime.now();
 		}
 		
-		log.info("New data point: {} {} {}", sensor.id, localDateTime, value);
+		log.info("New data point: {} {} -> {}", sensor.id, localDateTime, value);
 		
 		db.add(sensor.id, value, localDateTime);
 		
