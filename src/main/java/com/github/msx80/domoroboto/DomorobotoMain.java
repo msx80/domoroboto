@@ -26,8 +26,8 @@ public class DomorobotoMain {
 		String base = conf.get("http.base", "");
 
 		System.out.println("Server running, you can point your browser to (something like):");
-		System.out.println(" http://localhost:"+httpPort+"/"+base+"things");
-		System.out.println(" http://localhost:"+httpPort+"/"+base+"sensors");
+		System.out.println("http://localhost:"+httpPort+"/"+base+"things");
+		System.out.println("http://localhost:"+httpPort+"/"+base+"sensors");
 		
 		ws.waitTermination();
 			

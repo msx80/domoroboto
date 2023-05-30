@@ -9,6 +9,10 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.msx80.domoroboto.Core;
 
 /**
  * A wrapper for MqttClient that enable multiple listener on the same subscription.
@@ -16,6 +20,8 @@ import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
  *
  */
 public class MultiplexingSub {
+	
+	private static Logger log = LoggerFactory.getLogger(MultiplexingSub.class);
 	
 	MqttClient mqtt;
 	
@@ -54,6 +60,7 @@ public class MultiplexingSub {
 	 {
 		 String payload = new String(message.getPayload());
 		 var lis = listeners.get(topic);
+		 log.info("Received msg for {} listeners: {}", listeners, payload);
 		 for (Listener listener : lis) {
 			 try
 			 {
