@@ -60,7 +60,7 @@ public class MultiplexingSub {
 	 {
 		 String payload = new String(message.getPayload());
 		 var lis = listeners.get(topic);
-		 log.info("Received msg for {} listeners: {}", listeners, payload);
+		 log.info("Received msg for {} listeners: {}", listeners.size(), payload);
 		 for (Listener listener : lis) {
 			 try
 			 {
