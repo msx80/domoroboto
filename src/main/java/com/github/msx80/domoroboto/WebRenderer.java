@@ -14,6 +14,7 @@ import com.github.msx80.domoroboto.model.Thing;
 import com.github.msx80.domoroboto.model.ThingData;
 import com.github.msx80.domoroboto.model.Type;
 import com.github.msx80.domoroboto.utils.Templating;
+import com.vdurmont.emoji.EmojiParser;
 
 public class WebRenderer {
 
@@ -67,6 +68,13 @@ public class WebRenderer {
 	{
 		log.info("rendering thing: {}", td.thing.id);
 		
+		String favicon = "📟";
+		var emojis = EmojiParser.extractEmojis(td.thing.label);
+		if(emojis.size() > 0)
+		{
+			favicon = emojis.get(0);
+		}
+		
 		Thing ti = td.thing;
 		String page = Templating
 				.load("thing.start")
@@ -74,6 +82,7 @@ public class WebRenderer {
 				.add("label", ti.label)
 				.add("kind", ti.kind)
 				.add("state", td.state)
+				.add("favicon", favicon)
 				.add("autosend", ti.autosend)
 				.add("stateDescription", "fakedescription")				
 				.render();

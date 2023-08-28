@@ -36,7 +36,7 @@
                 },
                 {
                         "id": "ac_bedroom",
-                        "label": "A/C Bedroom",
+                        "label": "A/C Bedroom 👨🏾",
                         "kind": "A/C unit",
                         "statusTopic": "tele/ACBedroom/LWT",
                         "commandTopic": "cmnd/ACBedroom/DaikinCtrl",
@@ -59,19 +59,19 @@
                         "id": "rgb_light",
                         "label": "Mood light",
                         "kind": "RGB Light",
-                        "statusTopic": "tele/Mood/LWT",
-                        "commandTopic": "cmnd/Mood/DaikinCtrl",
-                        "replyTopic": "stat/Mood/RESULT",
-                        "activeTopic": "tele/Mood/SENSOR",
-                        "activeTopicPath": "$.active",
+                        "statusTopic": "tele/Ceramic1/LWT",
+                        "commandTopic": "cmnd/Ceramic1/Color",
+                        "replyTopic": "stat/Ceramic1/RESULT",
+                        "activeTopic": "tele/Ceramic1/STATE",
+                        "activeTopicPath": "$.POWER",
                         
                         "attributes": [
                                 { "id": "active", "label": "Active", "desc": "bla", "type":"switch", "defaultValue":false },
-                                { "id": "color", "label":"Color", "type":"color", "defaultValue":"#FF0000" }, 
-                                { "id": "intensity", "label":"Intensity", "type":"integer", "defaultValue":50, "rangeMin":0, "rangeMax":100  }
+                                { "id": "color", "label":"Color", "type":"color", "defaultValue":"#FF0000" }
                         ],
-                        "commandJson": true,
-                        "resultOk": "*\"RgbCtrl\":\"Done\"*"
+                        "commandJson": false,
+                        "commandTemplate": "{{#if active }}{{color}}{{else}}#000000{{/if}}",
+                        "resultOk": "*\"POWER\":\"*"
                 },
                 {
                         "id": "speaker1",
@@ -90,6 +90,26 @@
                         ],
                         "commandJson": true,
                         "resultOk": "*\"RES\":\"Done\"*"
+                },
+                {
+                        "id": "lampadina1",
+                        "kind": "Light",
+                        "label": "Lampadina 💡",
+                        "statusTopic": "tele/ZigbeeBridge/LWT",
+                        "commandTopic": "cmnd/ZigbeeBridge/ZbSend",
+                        "replyTopic": "stat/ZigbeeBridge/RESULT",
+                        "activeTopic": "tele/ZigbeeBridge/677F/SENSOR",
+                        "activeTopicPath": "$.ZbReceived.0x677F.Power",
+                        "attributes": [
+								{
+									"id": "active", "label": "Active", "desc": "bla", type="switch", defaultValue=true
+								},
+								{
+									"id": "dimmer", "label": "Dimmer", "desc": "bla", type="temperature", defaultValue:255, rangeMin=0, rangeMax=255
+								}
+                        ],
+                        "commandTemplate": "{\"device\":\"0x677F\",\"send\":{\"dimmer\":{{#if active }}{{dimmer}}{{else}}0{{/if}} } }",
+                        "resultOk": "*ZbSend*Done*"
                 }
                 
 
