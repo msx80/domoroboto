@@ -46,10 +46,12 @@ const login = () => {
 	xhr.onload = function () {
         	setMsg(xhr.responseText); 
         	button.disabled = false;
+        	window.setTimeout(function(){ setMsg("Ready again"); }, 2000);
     }
 	xhr.onerror = function () {
         	setMsg("Could not make the request"); 
         	button.disabled = false;
+        	window.setTimeout(function(){ setMsg("Ready again"); }, 2000);
     }
 
 }
