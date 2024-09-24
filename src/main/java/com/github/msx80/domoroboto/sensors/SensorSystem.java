@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
@@ -180,17 +182,18 @@ public class SensorSystem
 		DocumentProducer list =  (req, res) -> 
 		{
 			
-			var lista = sensorsById.values().stream().map(s -> {
-				Map<String, Object> r = new HashMap<>();
-				r.put("label", s.label);
-				r.put("id", s.id);
-				r.put("value", db.currentValue(s.id));
-				return r;
+			var lista = sensorsById.values().stream().map(s -> 
+			{
+				return new SensorItem(s.label, s.id, db.currentValue(s.id), s.group);
 			}).toList();
+			
+			
+			var sortedMap = new TreeMap<>( lista.stream().collect(Collectors.groupingBy(e -> e.group()==null ? "Main":e.group())) );
+			
 			
 			String page = Templating
 					.load("sensors.list")
-					.add("sensors", lista)				
+					.add("sensors", sortedMap)				
 					.render();
 			
 			res.setContent(page);

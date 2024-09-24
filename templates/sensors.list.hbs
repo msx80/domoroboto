@@ -36,8 +36,10 @@ const openW = (id) => {
 <H5 style="text-align:center;">{{i18n "listOfSensors"}}</h5>
 
 
+{{#each sensors}}
+<hr class="hr-text gradient" data-content="{{@key}}">
 <table class="structural">
-{{#sensors}}
+{{#each this}}
 <tr>
 <td style="text-align:center;padding-bottom: 0.4em;">
 <button id="sendbtn" type="button" onclick="openW('{{id}}')" class="regButton">{{this.label}}</button>
@@ -46,8 +48,10 @@ const openW = (id) => {
  <span style="font-size:110%; font-weight: bold;">{{this.value}}</span>
 </td>
 </tr>
-{{/sensors}}
+{{/each}}
 </table>  
+{{/each}}
+
 
 
 

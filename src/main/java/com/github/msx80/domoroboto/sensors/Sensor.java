@@ -8,4 +8,5 @@ public class Sensor
 	public String timestampPath;
 	public String valuePath;
 	public String ylabel;
+	public String group;
 }
