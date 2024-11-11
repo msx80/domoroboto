@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.msx80.simpleconf.Configuration;
+import com.github.msx80.simpleconf.MissingKeyException;
 
 public class MqttUtils 
 {
@@ -56,9 +57,25 @@ public class MqttUtils
 				
 			}
 		});
+		
+		try {
+			String domorobotoTopic = conf.getString("domoroboto.topic");
+			connOpts.setWill(domorobotoTopic, "offline".getBytes(), 0, true);
+		} catch (MissingKeyException e) {
+			// no message
+		}
+		
 		// establish a connection
 		log.info("Connecting to broker: {}", broker);
 		client.connect(connOpts);
+		
+		try {
+			String domorobotoTopic = conf.getString("domoroboto.topic");
+			client.publish(domorobotoTopic, "online".getBytes(), 0, true);
+		} catch (MissingKeyException e) {
+			// no message
+		}
+		
 		return client;
 	}
 
