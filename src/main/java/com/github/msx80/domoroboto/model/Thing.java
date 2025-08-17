@@ -15,6 +15,7 @@ public class Thing {
 	public String resultOk;
 	public Attribute[] attributes;
 	public Boolean autosend;
+	public Boolean disabled;
 	
 	public Boolean getAutosend() {
 		return autosend;
@@ -46,6 +47,14 @@ public class Thing {
 	}
 	public Attribute[] getAttributes() {
 		return attributes;
+	}
+
+	public Boolean getDisabled() {
+		return disabled;
+	}
+
+	public void setDisabled(Boolean disabled) {
+		this.disabled = disabled;
 	}
 	
 	

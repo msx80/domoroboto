@@ -68,9 +68,12 @@ public class Core implements Domo {
 		Config  c = g.fromJson(j, Config.class);
 		
 		for (Thing t : c.things) {
-			ThingData td = new ThingData(t, State.UNKNOWN, "");
-			thingsById.put(t.id, td);
-			things.add(td);
+			if((t.disabled==null) || !t.disabled)
+			{			
+				ThingData td = new ThingData(t, State.UNKNOWN, "");
+				thingsById.put(t.id, td);
+				things.add(td);
+			}
 		}
 		
 		for (ThingData t : thingsById.values()) 
